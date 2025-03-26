@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 const MemeCard = (props: any) => {
     const navigate = useNavigate();
     return (
-        <Card style={{ width: "18rem",margin: "25px" }}>
+        <Card style={{ width: "18rem"}}>
             <Card.Img variant="top" src={props.img} />
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>

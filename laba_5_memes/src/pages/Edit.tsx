@@ -41,7 +41,7 @@ const EditPage = () => {
             <div 
             style={{ width: "700px", border: "1px solid" }}
             ref={memeRef} 
-            className="meme mt-5 mb-5">
+            className="meme">
                 <img src={params.get("url")} width="250px" />
                 {Array(count)
                 .fill(0)
