@@ -3231,11 +3231,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Документы\\ВУЗ 3курс 2сем\\Веб\\React_lab\\Laba_8_9\\Laba_8_9.csproj",
+      "projectUniqueName": "D:\\Документы\\University_3year_2sem\\Veb\\React_lab\\React_lab\\Laba_8_9\\Laba_8_9.csproj",
       "projectName": "Laba_8_9",
-      "projectPath": "D:\\Документы\\ВУЗ 3курс 2сем\\Веб\\React_lab\\Laba_8_9\\Laba_8_9.csproj",
+      "projectPath": "D:\\Документы\\University_3year_2sem\\Veb\\React_lab\\React_lab\\Laba_8_9\\Laba_8_9.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\Документы\\ВУЗ 3курс 2сем\\Веб\\React_lab\\Laba_8_9\\obj\\",
+      "outputPath": "D:\\Документы\\University_3year_2sem\\Veb\\React_lab\\React_lab\\Laba_8_9\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

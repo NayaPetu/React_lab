@@ -32,6 +32,8 @@ public class NotesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateNoteRequest request, CancellationToken ct)
     {
+        Console.WriteLine($"Title: {request.Title}, Description: {request.Description}");
+
         var note = new Note(request.Title, request.Description);
         await _dbContext.Notes.AddAsync(note, ct);
         await _dbContext.SaveChangesAsync(ct);
@@ -40,12 +42,19 @@ public class NotesController : ControllerBase
 
 
     [HttpGet]
+
     public async Task<IActionResult> Get([FromQuery] GetNotesRequest request, CancellationToken ct)
     {
-        var notesQuery = _dbContext.Notes
-            .Where(n => !string.IsNullOrWhiteSpace(request.Search) ||
-            n.Title.ToLower().Contains(request.Search.ToLower()));
+        var notesQuery = _dbContext.Notes.AsQueryable();
 
+        // Фильтрация по поиску
+        if (!string.IsNullOrWhiteSpace(request.Search))
+        {
+            notesQuery = notesQuery
+                .Where(n => n.Title.ToLower().Contains(request.Search.ToLower()));
+        }
+
+        // Сортировка
         Expression<Func<Note, object>> selectorKey = request.SortItem?.ToLower() switch
         {
             "date" => note => note.CreatedAt,
@@ -53,19 +62,18 @@ public class NotesController : ControllerBase
             _ => note => note.Id
         };
 
-
         notesQuery = request.SortOrder == "desc"
             ? notesQuery.OrderByDescending(selectorKey)
             : notesQuery.OrderBy(selectorKey);
 
+        // Проекция
         var noteDtos = await notesQuery
             .Select(n => new NoteDto(n.Id, n.Title, n.Description, n.CreatedAt))
             .ToListAsync(cancellationToken: ct);
 
-           
         return Ok(new GetNotesResponse(noteDtos));
-
     }
+
 }
 
 
